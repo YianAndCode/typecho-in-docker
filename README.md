@@ -4,7 +4,7 @@
 
 ### 环境
 
-`php:7.4-fpm`、`nginx:latest`，该环境不包含 MySQL 数据库，但 PHP 环境已经安装 `pdo_mysql` 扩展，可以使用 MySQL 数据库
+`php:8.0-fpm`、`nginx:latest`，该环境不包含 MySQL 数据库，但 PHP 环境已经安装 `pdo_mysql` 和 `pdo_sqlite` 扩展，可以使用 MySQL 或者是 SQLite 数据库
 
 ### 目录结构
 
