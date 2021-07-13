@@ -21,17 +21,19 @@
 ```
 
 ## 用法
+将 Typecho 源码放在 `typecho` 目录中（如果不存在，则新建一个，保证目录结构如上面所示即可），然后执行 `docker-compose up -d`，然后就可以在浏览器访问 `http://127.0.0.1:8001`  
+
+*因为考虑到服务器上的 80 和 443 端口可能会被 nginx 之类的程序监听，故容器中 nginx 监听的端口为 8001，如需修改，请编辑 `docker-compose.yml`*  
+
+**注意：截止 2021.07.13，Typecho 最新的 realease tag 是 2017 年的版本，在 PHP 7.4/8.0 下会出现问题，因此建议使用 Typecho GitHub 仓库中最新的代码**
+
+操作步骤参考：
 ```
 cd /home
 git clone https://github.com/YianAndCode/typecho-in-docker.git
 cd /home/typecho-in-docker
-git clone https://github.com.cnpmjs.org/typecho/typecho.git
+git clone https://github.com/typecho/typecho.git
+rm -r typecho/.git
 chown -R www-data:www-data typecho/
 docker-compose up -d
 ```
-这个地址`https://github.com.cnpmjs.org`为Github网站镜像站起到一个国内加速作用如果担心的话可更换`https://github.com`  
-将 Typecho 源码放在 `typecho` 目录中（如果不存在，则新建一个，保证目录结构如上面所示即可），然后执行 `docker-compose up -d`，然后就可以在浏览器访问 `http://127.0.0.1:8001`  
-
-*因为考虑到服务器上的 80 和 443 端口可能会被 nginx 之类的程序监听，故容器中 nginx 监听的端口为 8001，如需修改，请编辑 `docker-compose.yml`*  
-## 注意事项
-建议克隆GitHub仓库最新的typecho仓库代码，官网打包的版本是17年的版本很久没有更新了安装时候会出现问题
