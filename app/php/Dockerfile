@@ -7,7 +7,7 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get install -y \
-    cron zlib1g-dev libpng-dev vim \
+    cron zlib1g-dev libpng-dev vim git \
     libwebp-dev \
     libjpeg62-turbo-dev \
     libpng-dev libxpm-dev \
@@ -27,9 +27,15 @@ RUN pecl install redis \
     && docker-php-ext-install gd \
     && docker-php-ext-enable redis
 
+RUN git clone https://github.com/typecho/typecho.git /data/wwwroot/typecho \
+    && cd /home/typecho-in-docker \
+    && rm -r typecho/.git/data/wwwroot/typecho
+
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN printf '[PHP]\ndate.timezone = "Asia/Shanghai"\n' > /usr/local/etc/php/conf.d/tzone.ini
 
 ENV LANG C.UTF-8
+
+VOLUME /data/wwwroot/typecho
